@@ -23,7 +23,7 @@ module.exports = (env = { NODE_ENV: 'development' }) => {
         path: path.join(__dirname, 'dist'),
         filename: isProd ? 'js/[name].[chunkhash:8].js' : 'js/[name].[hash:8].js',
         chunkFilename: 'js/[name].[chunkhash:8].js',
-        publicPath: '/sda/Stoevring/'
+        publicPath: '/'
     },
     plugins: [
       new HtmlWebpackPlugin({
