@@ -10,8 +10,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
 export enum PageEnum {
-    frontpage,
-    contact
+    frontpage = "frontpage",
+    contact = "contact"
 }
 
 const styles = (theme: Theme) => ({
@@ -50,6 +50,7 @@ interface ITopAppBarProps {
       tab: any;
     },
     history?: H.History;
+    location?: H.Location;
   }
 
   interface ITopAppBarStates {
@@ -62,37 +63,61 @@ interface ITopAppBarProps {
 @(withStyles(styles) as any)
 @(withNamespaces("global") as any)
 export default class TopAppBar extends Component<Props, ITopAppBarStates> {
+
     constructor(props: ITopAppBarProps) {
         super(props)
+
+        this.state = {
+            page: PageEnum.frontpage
+        }
     }
 
-    handleChange = (value: any) => {
+    handleChange = (event: React.ChangeEvent<{}>, value: any) => {
         const page = value as PageEnum;
-        this.setState({page: page});
+        const {history, location} = this.props;
 
-        if(page === PageEnum.frontpage){
-            this.props.history.push("")
+        if (location.pathname.startsWith("/" + page.toString())) {
             return;
         }
 
-        this.props.history.push("/" + page.toString())
+        this.setState({page: page});
+
+        if(page === PageEnum.frontpage){
+            history.push("")
+            return;
+        }
+
+        history.push("/" + page.toString())
+    }
+
+    componentDidMount(){
+        const { history, location} = this.props;
+        const page = location.pathname.split("/");
+
+        if (location.pathname.startsWith("/" + page.toString())) {
+            return;
+        }
+
+        history.push("/" + page[1])
+        this.setState({page: page[1 ] as PageEnum});
     }
 
     render() {
         const { classes, t } = this.props;
+        const { page } = this.state;
 
         return (
             <div className={classes.root}>
                 <Toolbar className={classes.appBar} >
                     <Typography variant="h6" color="inherit" className={classes.title}>{t("title")}</Typography>
                     <Tabs className={classes.tabs}
-                        value={1}
+                        value={page.toString()}
                         onChange={this.handleChange}
-                        indicatorColor="inherit"
+                        indicatorColor="secondary"
                         textColor="inherit"
                         centered>
-                        <Tab value={PageEnum.frontpage} label={t("frontpage")} className={classes.tab}/>
-                        <Tab value={PageEnum.contact} label={t("contact")}  className={classes.tab}/>
+                        <Tab value={PageEnum.frontpage.toString()} label={t("frontpage")} className={classes.tab}/>
+                        <Tab value={PageEnum.contact.toString()} label={t("contact")}  className={classes.tab}/>
                     </Tabs>
                 </Toolbar>
             </div>
