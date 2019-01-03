@@ -1,5 +1,7 @@
 {
   "global": {
-    "title": "Romalt Auto"
+    "title": "Romalt Auto",
+    "frontpage": "Forside",
+    "contact": "Kontakt"
   }
 }
