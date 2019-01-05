@@ -4,6 +4,7 @@ import TopAppBar from "src/react/_Layout/TopAppBar"
 import { Route, Switch } from 'react-router-dom';
 import { withStyles, Theme } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import ContactView from './react/ContactView';
 
 const styles = (theme: Theme) => ({
   root: {
@@ -32,6 +33,7 @@ class App extends Component<IAppProps> {
       <div className={classes.root}>
         <TopAppBar />
         <Switch>
+          <Route path="/contact*" render={ContactView} />
           <Route path="*" render={this.renderLoader} />
         </Switch>
     </div>
