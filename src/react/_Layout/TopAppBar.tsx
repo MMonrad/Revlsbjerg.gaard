@@ -91,14 +91,14 @@ export default class TopAppBar extends Component<Props, ITopAppBarStates> {
     }
 
     componentDidMount(){
-        const { history, location} = this.props;
+        const { location} = this.props;
         const page = location.pathname.split("/");
 
-        if (location.pathname.startsWith("/" + page.toString())) {
+        if(page[1] === "")        {
+            this.setState({page: PageEnum.frontpage});
             return;
         }
 
-        history.push("/" + page[1])
         this.setState({page: page[1 ] as PageEnum});
     }
 

@@ -20,7 +20,7 @@ const theme = createMuiTheme({
 });
 
 render(
-        <HashRouter >
+        <HashRouter>
             <MuiThemeProvider theme={theme}>
                     <CssBaseline />
                     <App />

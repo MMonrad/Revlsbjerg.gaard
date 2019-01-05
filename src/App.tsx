@@ -34,8 +34,8 @@ class App extends Component<IAppProps> {
         <TopAppBar/>
         <Grid style={{marginTop:"115px"}}>
           <Switch>
-          <Route path="*" render={this.renderLoader} />
-          <Route path="/contact*" render={()=><ContactView/>} />
+            <Route path="/contact" render={()=><ContactView/>} />
+            <Route path="*" render={this.renderLoader} />
           </Switch>
         </Grid>
     </div>
