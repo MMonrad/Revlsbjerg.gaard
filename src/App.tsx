@@ -33,6 +33,7 @@ class App extends Component<IAppProps> {
       <div className={classes.root}>
         <TopAppBar/>
         <Grid style={{marginTop:"115px"}}>
+          <img src={"/favicon.ico"} />
           <Switch>
             <Route path="/contact" render={()=><ContactView/>} />
             <Route path="*" render={this.renderLoader} />
