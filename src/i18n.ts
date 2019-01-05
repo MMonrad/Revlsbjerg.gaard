@@ -9,7 +9,7 @@ i18next.use(LanguageDetector)
            interpolation: {
                 escapeValue: false
            },
-           fallbackLng: 'da-DK',
+           fallbackLng: 'da',
            resources
        })
 

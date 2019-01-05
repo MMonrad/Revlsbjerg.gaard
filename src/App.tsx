@@ -4,6 +4,7 @@ import TopAppBar from "src/react/_Layout/TopAppBar"
 import { Route, Switch } from 'react-router-dom';
 import { withStyles, Theme } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Grid from '@material-ui/core/Grid';
 import ContactView from './react/ContactView';
 
 const styles = (theme: Theme) => ({
@@ -11,7 +12,6 @@ const styles = (theme: Theme) => ({
     width: '100%',
     height: '100%',
   },
-
 });
 
 interface IAppProps {
@@ -31,11 +31,13 @@ class App extends Component<IAppProps> {
 
     return (
       <div className={classes.root}>
-        <TopAppBar />
-        <Switch>
-          <Route path="/contact*" render={ContactView} />
+        <TopAppBar/>
+        <Grid style={{marginTop:"115px"}}>
+          <Switch>
           <Route path="*" render={this.renderLoader} />
-        </Switch>
+          <Route path="/contact*" render={()=><ContactView/>} />
+          </Switch>
+        </Grid>
     </div>
     );
   }

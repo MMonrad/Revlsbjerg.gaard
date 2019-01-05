@@ -1,3 +1,6 @@
+// Import a pre-configured instance of i18next
+import './i18n';
+
 import * as React from 'react';
 import { render } from 'react-dom';
 import { HashRouter } from "react-router-dom";
@@ -7,9 +10,6 @@ import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 
 import App from 'src/App';
 import * as serviceWorker from './serviceWorker';
-
-// Import a pre-configured instance of i18next
-import i18n from './i18n';
 
 import "src/utils/polyfills";
 
